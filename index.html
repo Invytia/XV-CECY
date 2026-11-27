@@ -139,6 +139,34 @@
 
         .frame-gold { border: 1px solid rgba(212,175,55,.55); outline: 1px solid rgba(212,175,55,.25); outline-offset: 8px; }
 
+        /* ---------- FOTOS ---------- */
+        .photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; user-select: none; -webkit-user-drag: none; }
+        .photo-arch {
+            width: min(78vw, 300px); aspect-ratio: 3/4; margin: 0 auto 2.5rem; overflow: hidden;
+            border-radius: 999px 999px 24px 24px; padding: 8px;
+            background: linear-gradient(145deg, #fff3b0, #d4af37 50%, #9c7a1b);
+            box-shadow: 0 25px 50px rgba(0,0,0,.45), 0 0 40px rgba(212,175,55,.25);
+        }
+        .photo-arch .photo { border-radius: 999px 999px 18px 18px; }
+        .photo-wide { position: relative; width: 100%; height: clamp(320px, 70vw, 520px); overflow: hidden; }
+        .photo-wide::before, .photo-wide::after { content:""; position:absolute; left:0; right:0; height: 90px; z-index: 2; pointer-events: none; }
+        .photo-wide::before { top: 0; background: linear-gradient(180deg, var(--fade-top, #3A1F5C), transparent); }
+        .photo-wide::after { bottom: 0; background: linear-gradient(0deg, var(--fade-bottom, #3A1F5C), transparent); }
+        .polaroid {
+            background: #fffdf8; padding: 10px 10px 34px; border: 1px solid rgba(212,175,55,.6);
+            box-shadow: 0 18px 35px rgba(58,31,92,.3); width: 100%; max-width: 230px; aspect-ratio: 4/5;
+            transition: transform .5s ease;
+        }
+        .polaroid .photo { height: 100%; }
+        .polaroid.left { transform: rotate(-5deg); }
+        .polaroid.right { transform: rotate(4deg) translateY(28px); }
+        .polaroid:hover { transform: rotate(0) scale(1.04); }
+        .photo-round {
+            width: 130px; height: 130px; margin: 0 auto 1.25rem; border-radius: 50%; padding: 4px; overflow: hidden;
+            background: linear-gradient(145deg, #fff3b0, #d4af37 50%, #9c7a1b); box-shadow: 0 10px 24px rgba(58,31,92,.3);
+        }
+        .photo-round .photo { border-radius: 50%; }
+
         /* Calendario */
         .cal { background: white; border: 1px solid rgba(212,175,55,.5); box-shadow: 0 20px 50px rgba(58,31,92,.15); }
         .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; border-radius: 50%; }
@@ -219,10 +247,15 @@
             </div>
         </section>
 
-        <!-- ================= INVITACIÓN + CUENTA ATRÁS ================= -->
+        <!-- ================= INVITACIÓN + FOTO 1 + CUENTA ATRÁS ================= -->
         <section class="py-20 px-5 text-center relative overflow-hidden" style="background:linear-gradient(180deg,#1E0F36 0%,#3A1F5C 100%)">
             <svg class="absolute sparkle" style="top:8%;left:12%;width:22px;color:#f6e27a" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/></svg>
             <svg class="absolute sparkle" style="bottom:10%;right:10%;width:30px;color:rgba(246,226,122,.7);animation-delay:-1.2s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/></svg>
+
+            <!-- FOTO 1 -->
+            <div class="photo-arch relative z-10 anim-fade-up">
+                <img src="assets/1.jpg" alt="Cecy" class="photo" loading="lazy">
+            </div>
 
             <div class="max-w-xl mx-auto relative z-10 anim-fade-up">
                 <p class="font-cursive text-4xl md:text-5xl gold-text mb-5">Un sueño hecho fiesta</p>
@@ -238,6 +271,11 @@
                 <div class="cd-box flex flex-col items-center justify-center rounded-2xl w-[72px] h-24 md:w-24 md:h-28"><span id="seconds" class="font-name text-3xl md:text-4xl font-bold text-white">00</span><span class="text-[9px] uppercase tracking-widest mt-1 font-semibold" style="color:var(--oro-claro)">Seg</span></div>
             </div>
         </section>
+
+        <!-- ================= FOTO 2 (BANDA ANCHA) ================= -->
+        <div class="photo-wide anim-fade-up" style="--fade-top:#3A1F5C;--fade-bottom:#3A1F5C;background:#3A1F5C">
+            <img src="assets/2.jpg" alt="Cecy" class="photo" loading="lazy">
+        </div>
 
         <!-- ================= PADRES Y PADRINOS ================= -->
         <section class="py-20 px-6 text-center relative overflow-hidden" style="background:linear-gradient(180deg,#3A1F5C 0%,#EADFF5 18%,#F4EEFA 100%)">
@@ -271,6 +309,15 @@
                 </div>
                 <div id="cal-grid" class="grid grid-cols-7 gap-1"></div>
                 <a id="btn-agenda" href="#" target="_blank" rel="noopener" class="btn-gold inline-block mt-6 px-7 py-3 rounded-full text-[10px] tracking-widest font-bold shadow-lg">AGREGAR A MI CALENDARIO</a>
+            </div>
+        </section>
+
+        <!-- ================= FOTOS 3 y 4 (POLAROIDS) ================= -->
+        <section class="pt-6 pb-20 px-4 text-center relative overflow-hidden" style="background:linear-gradient(180deg,#EADFF5,#EADFF5)">
+            <p class="font-cursive text-4xl gold-text mb-10 anim-fade-up">Momentos que atesoro</p>
+            <div class="flex justify-center items-start gap-4 md:gap-10 pb-8 anim-fade-up">
+                <div class="polaroid left"><img src="assets/3.jpg" alt="Cecy" class="photo" loading="lazy"></div>
+                <div class="polaroid right"><img src="assets/4.jpg" alt="Cecy" class="photo" loading="lazy"></div>
             </div>
         </section>
 
@@ -313,9 +360,10 @@
             </div>
         </section>
 
-        <!-- ================= CONFIRMACIÓN ================= -->
+        <!-- ================= CONFIRMACIÓN (FOTO 5) ================= -->
         <section class="py-16 px-6 anim-fade-up relative overflow-hidden" style="background:linear-gradient(180deg,#5b3a8a 0%,#3A1F5C 100%)" id="confirmacion">
             <div class="max-w-md mx-auto bg-white p-10 rounded-[3rem] shadow-xl text-center frame-gold">
+                <div class="photo-round"><img src="assets/5.jpg" alt="Cecy" class="photo" loading="lazy"></div>
                 <p class="font-cursive text-4xl gold-text mb-1">¿Me acompañas?</p>
                 <h2 class="font-name text-lg mb-6 tracking-widest uppercase" style="color:var(--morado-texto)">Confirmar asistencia</h2>
                 <input type="text" id="rsvp-nombre" placeholder="Nombre completo" class="w-full p-4 mb-4 rounded-2xl outline-none" style="background:rgba(169,139,209,.1);border:1px solid rgba(169,139,209,.4);color:var(--morado-texto)">
